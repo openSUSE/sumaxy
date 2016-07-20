@@ -1,0 +1,96 @@
+prefix          = @prefix@
+bindir          = @bindir@
+datarootdir     = @datarootdir@
+mandir          = $(datarootdir)/man
+man1dir         = $(mandir)/man1
+sysconfdir      = @sysconfdir@
+etcdir          = $(sysconfdir)
+
+CRAM            = cram
+CRAMFLAGS       =
+
+INSTALL         = install
+
+rootdir         = $(dir $(firstword $(MAKEFILE_LIST)))
+cfgdir          = $(rootdir)c
+srcdir          = $(rootdir)s
+smandir         = $(rootdir)m
+testdir         = $(rootdir)t
+testroot        = $(abspath $(testdir))
+
+name            = sumaxy
+
+cfgfiles        = sumaxy
+commands        = sumaxy
+man1pages       = $(addsuffix .1,$(commands))
+
+tests           = $(testdir)
+
+.PHONY: all
+all: $(commands)
+
+
+$(commands): %: $(srcdir)/%.zsh
+	$(call subst_vars)
+
+define subst_vars
+	sed -e 's![@]sysconfdir[@]!$(sysconfdir)!g' < $< > $@
+	chmod 0755 $@
+endef
+
+
+.PHONY: check
+check: all
+	env -i PATH="$$PATH" TESTROOT="$(testroot)" BUILDDIR="$$PWD" $(CRAM) $(CRAMFLAGS) $(tests)
+
+
+.PHONY: clean
+clean:
+	rm -f $(commands) $(testdir)/*.err
+
+
+.PHONY: install
+install: all installdirs
+	$(INSTALL) -m 0755 -t $(DESTDIR)$(bindir) $(commands)
+	$(INSTALL) -m 0644 -t $(DESTDIR)$(etcdir) $(addprefix $(cfgdir)/,$(cfgfiles))
+	$(INSTALL) -m 0644 -t $(DESTDIR)$(man1dir) $(addprefix $(smandir)/,$(man1pages))
+
+
+.PHONY: installdirs
+installdirs:
+	$(INSTALL) -m 0755 -d $(DESTDIR)$(bindir)
+	$(INSTALL) -m 0755 -d $(DESTDIR)$(etcdir)
+	$(INSTALL) -m 0755 -d $(DESTDIR)$(man1dir)
+
+
+.PHONY: tarball
+tarball: .git
+	git archive \
+	  --format tar.gz \
+	  --prefix $(name)-$(fix_version)/ \
+	  --output $(name)-$(fix_version).tar.gz \
+	  HEAD
+
+
+$(name).spec: p/$(name).spec.in
+	$(call subst_version,^Version:)
+
+PKGBUILD: p/PKGBUILD.in
+	$(call subst_version,^pkgver=)
+
+define subst_version
+	sed -e "/$(1)/s/__VERSION__/$(fix_version)/" \
+	    $< | tee $@ >/dev/null
+endef
+
+revname         = $(shell git describe --always --first-parent)
+fix_version     = $(subst -,+,$(patsubst v%,%,$(revname)))
+
+define first_in_path
+$(or \
+  $(firstword $(wildcard \
+    $(foreach p,$(1),$(addsuffix /$(p),$(subst :, ,$(PATH)))) \
+  )) \
+, $(error Need one of: $(1)) \
+)
+endef

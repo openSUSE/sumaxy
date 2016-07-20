@@ -1,0 +1,41 @@
+<project name="SUSE:Maintenance:2218" kind="maintenance_incident">
+  <title/>
+  <description/>
+  <person userid="asok" role="bugowner"/>
+  <person userid="alice" role="maintainer"/>
+  <group groupid="maintenance-team" role="maintainer"/>
+  <group groupid="autobuild-team" role="reviewer"/>
+  <group groupid="legal-auto" role="reviewer"/>
+  <group groupid="maintenance-team" role="reviewer"/>
+  <lock>
+    <enable/>
+  </lock>
+  <build>
+    <disable/>
+  </build>
+  <publish>
+    <disable/>
+  </publish>
+  <debuginfo>
+    <enable/>
+  </debuginfo>
+  <repository name="SUSE_Updates_Storage_2.1_x86_64">
+    <releasetarget project="SUSE:Updates:Storage:2.1:x86_64" repository="update" trigger="maintenance"/>
+    <path project="SUSE:Updates:Storage:2.1:x86_64" repository="update"/>
+    <arch>x86_64</arch>
+  </repository>
+  <repository name="SUSE_Updates_OpenStack-Cloud_6_x86_64">
+    <releasetarget project="SUSE:Updates:OpenStack-Cloud:6:x86_64" repository="update" trigger="maintenance"/>
+    <path project="SUSE:Updates:OpenStack-Cloud:6:x86_64" repository="update"/>
+    <arch>x86_64</arch>
+    <arch>i586</arch>
+  </repository>
+  <repository name="SUSE_SLE-12-SP1_Update_Products_Cloud6_Update">
+    <releasetarget project="SUSE:SLE-12-SP1:Update:Products:Cloud6:Update" repository="standard" trigger="maintenance"/>
+    <path project="SUSE:SLE-12-SP1:Update:Products:Cloud6:Update" repository="standard"/>
+    <arch>aarch64</arch>
+    <arch>ppc64le</arch>
+    <arch>s390x</arch>
+    <arch>x86_64</arch>
+  </repository>
+</project>

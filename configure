@@ -1,0 +1,40 @@
+#!/bin/sh
+
+populate() # {{{
+{
+  sed \
+    -e "s@prefix@$prefixg" \
+    -e "s@bindir@$bindirg" \
+    -e "s@datarootdir@$datarootdirg" \
+    -e "s@mandir@$mandirg" \
+    -e "s@sysconfdir@$sysconfdirg" \
+    $1 \
+  > $2
+} # }}}
+
+rootdir=$(dirname $(realpath $0))
+
+prefix=/usr/local
+bindir='${prefix}/bin'
+datarootdir='${prefix}/share'
+mandir='${datarootdir}/man'
+sysconfdir='${prefix}/etc'
+
+for a in "$@"; do
+  case $a in
+  --bindir=*)       bindir="${a#*=}"      ;;
+  --datarootdir=*)  datarootdir="${a#*=}" ;;
+  --mandir=*)       mandir="${a#*=}"      ;;
+  --prefix=*)       prefix="${a#*=}"      ;;
+  --sysconfdir=*)
+    sysconfdir="${a#*=}"
+    sysconfdir_set=1
+  ;;
+  esac
+done
+
+if [[ $prefix == /usr && ${sysconfdir_set-0} == 0 ]]; then
+  sysconfdir=/etc
+fi
+
+populate $rootdir/GNUmakefile.in GNUmakefile

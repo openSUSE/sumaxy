@@ -1,0 +1,104 @@
+<project name="SUSE:Maintenance:1039" kind="maintenance_incident">
+  <title/>
+  <description/>
+  <person userid="asok" role="bugowner"/>
+  <person userid="alice" role="maintainer"/>
+  <group groupid="maintenance-team" role="maintainer"/>
+  <group groupid="autobuild-team" role="reviewer"/>
+  <group groupid="legal-auto" role="reviewer"/>
+  <group groupid="maintenance-team" role="reviewer"/>
+  <lock>
+    <enable/>
+  </lock>
+  <build>
+    <disable/>
+  </build>
+  <publish>
+    <disable/>
+  </publish>
+  <debuginfo>
+    <enable/>
+  </debuginfo>
+  <repository name="SUSE_Updates_SLE-SERVER_11-SP2-LTSS_x86_64">
+    <releasetarget project="SUSE:Updates:SLE-SERVER:11-SP2-LTSS:x86_64" repository="update" trigger="maintenance"/>
+    <path project="SUSE:Updates:SLE-SERVER:11-SP2-LTSS:x86_64" repository="update"/>
+    <arch>x86_64</arch>
+  </repository>
+  <repository name="SUSE_Updates_SLE-SERVER_11-SP2-LTSS_s390x">
+    <releasetarget project="SUSE:Updates:SLE-SERVER:11-SP2-LTSS:s390x" repository="update" trigger="maintenance"/>
+    <path project="SUSE:Updates:SLE-SERVER:11-SP2-LTSS:s390x" repository="update"/>
+    <arch>s390x</arch>
+    <arch>s390</arch>
+  </repository>
+  <repository name="SUSE_Updates_SLE-SERVER_11-SP2-LTSS_i586">
+    <releasetarget project="SUSE:Updates:SLE-SERVER:11-SP2-LTSS:i586" repository="update" trigger="maintenance"/>
+    <path project="SUSE:Updates:SLE-SERVER:11-SP2-LTSS:i586" repository="update"/>
+    <arch>i586</arch>
+  </repository>
+  <repository name="SUSE_Updates_SLE-SERVER_11-SP1-TERADATA_x86_64">
+    <releasetarget project="SUSE:Updates:SLE-SERVER:11-SP1-TERADATA:x86_64" repository="update" trigger="maintenance"/>
+    <path project="SUSE:Updates:SLE-SERVER:11-SP1-TERADATA:x86_64" repository="update"/>
+    <arch>x86_64</arch>
+  </repository>
+  <repository name="SUSE_Updates_SLE-SERVER_11-SP1-LTSS_x86_64">
+    <releasetarget project="SUSE:Updates:SLE-SERVER:11-SP1-LTSS:x86_64" repository="update" trigger="maintenance"/>
+    <path project="SUSE:Updates:SLE-SERVER:11-SP1-LTSS:x86_64" repository="update"/>
+    <arch>x86_64</arch>
+  </repository>
+  <repository name="SUSE_Updates_SLE-SERVER_11-SP1-LTSS_s390x">
+    <releasetarget project="SUSE:Updates:SLE-SERVER:11-SP1-LTSS:s390x" repository="update" trigger="maintenance"/>
+    <path project="SUSE:Updates:SLE-SERVER:11-SP1-LTSS:s390x" repository="update"/>
+    <arch>s390x</arch>
+  </repository>
+  <repository name="SUSE_Updates_SLE-SERVER_11-SP1-LTSS_i586">
+    <releasetarget project="SUSE:Updates:SLE-SERVER:11-SP1-LTSS:i586" repository="update" trigger="maintenance"/>
+    <path project="SUSE:Updates:SLE-SERVER:11-SP1-LTSS:i586" repository="update"/>
+    <arch>i586</arch>
+  </repository>
+  <repository name="SUSE_Updates_SLE-DEBUGINFO_11-SP2_x86_64">
+    <releasetarget project="SUSE:Updates:SLE-DEBUGINFO:11-SP2:x86_64" repository="update" trigger="maintenance"/>
+    <path project="SUSE:Updates:SLE-DEBUGINFO:11-SP2:x86_64" repository="update"/>
+    <arch>x86_64</arch>
+  </repository>
+  <repository name="SUSE_Updates_SLE-DEBUGINFO_11-SP2_s390x">
+    <releasetarget project="SUSE:Updates:SLE-DEBUGINFO:11-SP2:s390x" repository="update" trigger="maintenance"/>
+    <path project="SUSE:Updates:SLE-DEBUGINFO:11-SP2:s390x" repository="update"/>
+    <arch>s390x</arch>
+  </repository>
+  <repository name="SUSE_Updates_SLE-DEBUGINFO_11-SP2_i586">
+    <releasetarget project="SUSE:Updates:SLE-DEBUGINFO:11-SP2:i586" repository="update" trigger="maintenance"/>
+    <path project="SUSE:Updates:SLE-DEBUGINFO:11-SP2:i586" repository="update"/>
+    <arch>i586</arch>
+  </repository>
+  <repository name="SUSE_Updates_SLE-DEBUGINFO_11-SP1_x86_64">
+    <releasetarget project="SUSE:Updates:SLE-DEBUGINFO:11-SP1:x86_64" repository="update" trigger="maintenance"/>
+    <path project="SUSE:Updates:SLE-DEBUGINFO:11-SP1:x86_64" repository="update"/>
+    <arch>x86_64</arch>
+  </repository>
+  <repository name="SUSE_Updates_SLE-DEBUGINFO_11-SP1_s390x">
+    <releasetarget project="SUSE:Updates:SLE-DEBUGINFO:11-SP1:s390x" repository="update" trigger="maintenance"/>
+    <path project="SUSE:Updates:SLE-DEBUGINFO:11-SP1:s390x" repository="update"/>
+    <arch>s390x</arch>
+  </repository>
+  <repository name="SUSE_Updates_SLE-DEBUGINFO_11-SP1_i586">
+    <releasetarget project="SUSE:Updates:SLE-DEBUGINFO:11-SP1:i586" repository="update" trigger="maintenance"/>
+    <path project="SUSE:Updates:SLE-DEBUGINFO:11-SP1:i586" repository="update"/>
+    <arch>i586</arch>
+  </repository>
+  <repository name="SUSE_Updates_SLE-DEBUGINFO_11-SP1-TERADATA_x86_64">
+    <releasetarget project="SUSE:Updates:SLE-DEBUGINFO:11-SP1-TERADATA:x86_64" repository="update" trigger="maintenance"/>
+    <path project="SUSE:Updates:SLE-DEBUGINFO:11-SP1-TERADATA:x86_64" repository="update"/>
+    <arch>x86_64</arch>
+  </repository>
+  <repository name="SUSE_SLE-11-SP1_Update">
+    <releasetarget project="SUSE:SLE-11-SP1:Update" repository="standard" trigger="maintenance"/>
+    <path project="SUSE:SLE-11-SP1:Update" repository="standard"/>
+    <arch>i586</arch>
+    <arch>ia64</arch>
+    <arch>ppc</arch>
+    <arch>ppc64</arch>
+    <arch>s390</arch>
+    <arch>s390x</arch>
+    <arch>x86_64</arch>
+  </repository>
+</project>
