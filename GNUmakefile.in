@@ -11,12 +11,14 @@ CRAMFLAGS       =
 
 INSTALL         = install
 
-rootdir         = $(dir $(firstword $(MAKEFILE_LIST)))
-cfgdir          = $(rootdir)c
-srcdir          = $(rootdir)s
-smandir         = $(rootdir)m
-testdir         = $(rootdir)t
-testroot        = $(abspath $(testdir))
+VPATH           = $(rootdir)
+
+rootdir         = @rootdir@
+cfgdir          = c
+srcdir          = s
+smandir         = m
+testdir         = t
+testroot        = $(rootdir)/$(testdir)
 
 name            = sumaxy
 
@@ -40,8 +42,8 @@ endef
 
 
 .PHONY: check
-check: all
-	env -i PATH="$$PATH" TESTROOT="$(testroot)" BUILDDIR="$$PWD" $(CRAM) $(CRAMFLAGS) $(tests)
+check: $(tests) | all
+	env -i PATH="$$PATH" TESTROOT="$(testroot)" BUILDDIR="$$PWD" $(CRAM) $(CRAMFLAGS) $^
 
 
 .PHONY: clean
@@ -64,11 +66,13 @@ installdirs:
 
 
 .PHONY: tarball
-tarball: .git
+tarball:
+	wd=$$(pwd) && \
+	cd $(rootdir) && \
 	git archive \
 	  --format tar.gz \
 	  --prefix $(name)-$(fix_version)/ \
-	  --output $(name)-$(fix_version).tar.gz \
+	  --output $$wd/$(name)-$(fix_version).tar.gz \
 	  HEAD
 
 
