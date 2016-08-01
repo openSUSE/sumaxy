@@ -86,6 +86,12 @@ with published packages in the input files.
 .
 .\" INPUT FILES {{{
 .Sh INPUT FILES
+.Nm
+consumes XML data in files listed below,
+produced by the corresponding BuildService API endpoints.
+An easy way to create these files is by using
+.Xr smrt-fetch 1 .
+.
 .Bl -tag -width "xx"
 .It Ar DIR Ns Pa /packages.xml
 . Nm osc Cm api Li \&"/search/published/binary/id?match=project=' Ns Va $mprj Ns Li '&limit=0"
