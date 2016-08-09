@@ -9,14 +9,20 @@ repo_urls+=(
 
 # FIXME this needs to be replaced with a lookup in the IBS,
 # FIXME most probably a wholesale prefetch and cache
-# FIXME see osc -A ibs '/source/SUSE?view=verboseproductlist&expand=1'
+# FIXME see osc -A ibs api '/source/SUSE?view=verboseproductlist&expand=1'
+#
+# keys concatenate the issuer, colon, and project name stripped
+# of the "SUSE:Updates:" prefix and the colon-version-colon-arch
+# suffix.
+# values are lowercased product names as listed in product files,
+# without any "suse_" prefix.
 product_names+=(
   SUSE:12-Cloud-Compute suse-sle12-cloud-compute
   SUSE:OpenStack-Cloud  suse-openstack-cloud
   SUSE:SLE-DESKTOP      sled
   SUSE:SLE-RT           suse-linux-enterprise-rt
-  SUSE:SLE-SAP          sapaio
-  SUSE:SLE-SAP-AIO      sapaio
+  SUSE:SLE-SAP          sles_sap
+  SUSE:SLE-SAP-AIO      sap-aio
   SUSE:SLE-SERVER       sles
   SUSE:SLES4VMWARE      sles-for-vmware
   SUSE:SUSE-MANAGER     suse-manager-server
