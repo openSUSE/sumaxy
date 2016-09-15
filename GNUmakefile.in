@@ -54,8 +54,8 @@ clean:
 .PHONY: install
 install: all installdirs
 	$(INSTALL) -m 0755 -t $(DESTDIR)$(bindir) $(commands)
-	$(INSTALL) -m 0644 -t $(DESTDIR)$(etcdir) $(addprefix $(cfgdir)/,$(cfgfiles))
-	$(INSTALL) -m 0644 -t $(DESTDIR)$(man1dir) $(addprefix $(smandir)/,$(man1pages))
+	$(INSTALL) -m 0644 -t $(DESTDIR)$(etcdir) $(addprefix $(rootdir)/$(cfgdir)/,$(cfgfiles))
+	$(INSTALL) -m 0644 -t $(DESTDIR)$(man1dir) $(addprefix $(rootdir)/$(smandir)/,$(man1pages))
 
 
 .PHONY: installdirs
