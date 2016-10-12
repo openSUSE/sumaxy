@@ -14,10 +14,10 @@ INSTALL         = install
 VPATH           = $(rootdir)
 
 rootdir         = @rootdir@
-cfgdir          = c
-srcdir          = s
-smandir         = m
-testdir         = t
+cfgdir          = cfg 
+srcdir          = src
+smandir         = man
+testdir         = tests
 testroot        = $(rootdir)/$(testdir)
 
 name            = sumaxy
@@ -75,12 +75,6 @@ tarball:
 	  --output $$wd/$(name)-$(fix_version).tar.gz \
 	  HEAD
 
-
-$(name).spec: p/$(name).spec.in
-	$(call subst_version,^Version:)
-
-PKGBUILD: p/PKGBUILD.in
-	$(call subst_version,^pkgver=)
 
 define subst_version
 	sed -e "/$(1)/s/__VERSION__/$(fix_version)/" \
