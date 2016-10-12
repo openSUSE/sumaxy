@@ -14,7 +14,7 @@ INSTALL         = install
 VPATH           = $(rootdir)
 
 rootdir         = @rootdir@
-cfgdir          = cfg 
+cfgdir          = cfg
 srcdir          = src
 smandir         = man
 testdir         = tests
