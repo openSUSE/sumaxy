@@ -1,4 +1,4 @@
 FIXTURES=$TESTROOT/fixtures
 PATH="$TESTROOT:$BUILDDIR:$PATH"
 export PYTHONPATH=$BUILDDIR
-export SUMAXYRC="$TESTROOT/../c/sumaxy"
+export SUMAXYRC="$TESTROOT/../cfg/sumaxy"
