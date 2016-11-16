@@ -14,14 +14,14 @@ repo_urls+=(
 # keys concatenate the issuer, colon, and project name stripped
 # of the "SUSE:Updates:" prefix and the colon-version-colon-arch
 # suffix.
-# values are lowercased product names as listed in product files,
+# values are product names as listed in product files, in some cases lowercased
 # without any "suse_" prefix.
 product_names+=(
   SUSE:12-Cloud-Compute suse-sle12-cloud-compute
   SUSE:OpenStack-Cloud  suse-openstack-cloud
   SUSE:SLE-DESKTOP      sled
-  SUSE:SLE-RT           suse-linux-enterprise-rt
-  SUSE:SLE-SAP          sles_sap
+  SUSE:SLE-RT           SUSE-Linux-Enterprise-RT
+  SUSE:SLE-SAP          SLES_SAP
   SUSE:SLE-SAP-AIO      sap-aio
   SUSE:SLE-SERVER       sles
   SUSE:SLES4VMWARE      sles-for-vmware
