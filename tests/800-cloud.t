@@ -16,13 +16,13 @@ cloud 5::
   $ wd=$FIXTURES/SUSE:Maintenance:2233:104257
 
   $ sumaxy $wd x86_64
-  suse-cloud:5::p=2233 http://dl.example.org/ibs/SUSE:/Maintenance:/2233/SUSE_Updates_SUSE-CLOUD_5_x86_64/
+  issue-suse-cloud:5::p=2233 http://dl.example.org/ibs/SUSE:/Maintenance:/2233/SUSE_Updates_SUSE-CLOUD_5_x86_64/
 
   $ sumaxy $wd x86_64 suse-cloud:5
-  suse-cloud:5::p=2233 http://dl.example.org/ibs/SUSE:/Maintenance:/2233/SUSE_Updates_SUSE-CLOUD_5_x86_64/
+  issue-suse-cloud:5::p=2233 http://dl.example.org/ibs/SUSE:/Maintenance:/2233/SUSE_Updates_SUSE-CLOUD_5_x86_64/
 
   $ sumaxy $wd x86_64 suse-cloud
-  suse-cloud:5::p=2233 http://dl.example.org/ibs/SUSE:/Maintenance:/2233/SUSE_Updates_SUSE-CLOUD_5_x86_64/
+  issue-suse-cloud:5::p=2233 http://dl.example.org/ibs/SUSE:/Maintenance:/2233/SUSE_Updates_SUSE-CLOUD_5_x86_64/
 
   $ sumaxy $wd x86_64 suse-openstack-cloud:5
 
@@ -33,15 +33,15 @@ cloud 6::
   $ wd=$FIXTURES/SUSE:Maintenance:2218:103606
 
   $ sumaxy $wd x86_64
-  ses:2.1::p=2218 http://dl.example.org/ibs/SUSE:/Maintenance:/2218/SUSE_Updates_Storage_2.1_x86_64/
-  suse-openstack-cloud:6::p=2218 http://dl.example.org/ibs/SUSE:/Maintenance:/2218/SUSE_Updates_OpenStack-Cloud_6_x86_64/
+  issue-ses:2.1::p=2218 http://dl.example.org/ibs/SUSE:/Maintenance:/2218/SUSE_Updates_Storage_2.1_x86_64/
+  issue-suse-openstack-cloud:6::p=2218 http://dl.example.org/ibs/SUSE:/Maintenance:/2218/SUSE_Updates_OpenStack-Cloud_6_x86_64/
 
   $ sumaxy $wd x86_64 suse-cloud:6
 
   $ sumaxy $wd x86_64 suse-cloud
 
   $ sumaxy $wd x86_64 suse-openstack-cloud:6
-  suse-openstack-cloud:6::p=2218 http://dl.example.org/ibs/SUSE:/Maintenance:/2218/SUSE_Updates_OpenStack-Cloud_6_x86_64/
+  issue-suse-openstack-cloud:6::p=2218 http://dl.example.org/ibs/SUSE:/Maintenance:/2218/SUSE_Updates_OpenStack-Cloud_6_x86_64/
 
   $ sumaxy $wd x86_64 suse-openstack-cloud
-  suse-openstack-cloud:6::p=2218 http://dl.example.org/ibs/SUSE:/Maintenance:/2218/SUSE_Updates_OpenStack-Cloud_6_x86_64/
+  issue-suse-openstack-cloud:6::p=2218 http://dl.example.org/ibs/SUSE:/Maintenance:/2218/SUSE_Updates_OpenStack-Cloud_6_x86_64/
