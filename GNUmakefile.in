@@ -1,29 +1,34 @@
 prefix          = @prefix@
 bindir          = @bindir@
 datarootdir     = @datarootdir@
-mandir          = $(datarootdir)/man
+mandir          = @mandir@
 man1dir         = $(mandir)/man1
 sysconfdir      = @sysconfdir@
 etcdir          = $(sysconfdir)
+version         = @version@
 
 CRAM            = cram
 CRAMFLAGS       =
 
 INSTALL         = install
+RST2MAN         = rst2man
 
 VPATH           = $(rootdir)
 
 rootdir         = @rootdir@
 cfgdir          = cfg
+docdir          = doc
 srcdir          = src
 smandir         = man
 testdir         = tests
 testroot        = $(rootdir)/$(testdir)
+rstdir          = $(rootdir)/$(docdir)/$(smandir)
 
 name            = sumaxy
 
 cfgfiles        = sumaxy
 commands        = sumaxy
+manpages        = $(man1pages)
 man1pages       = $(addsuffix .1,$(commands))
 
 tests           = $(testdir)
@@ -31,6 +36,9 @@ tests           = $(testdir)
 .PHONY: all
 all: $(commands)
 
+$(man1pages): %: $(rstdir)/%.rst
+	$(call subst_man)
+	$(RST2MAN) $(notdir $<) $@
 
 $(commands): %: $(srcdir)/%.zsh
 	$(call subst_vars)
@@ -48,14 +56,14 @@ check: $(tests) | all
 
 .PHONY: clean
 clean:
-	rm -f $(commands) $(testdir)/*.err
+	rm -f $(commands) $(testdir)/*.err $(manpages) $(addsuffix .rst,$(manpages))
 
 
 .PHONY: install
 install: all installdirs
 	$(INSTALL) -m 0755 -t $(DESTDIR)$(bindir) $(commands)
 	$(INSTALL) -m 0644 -t $(DESTDIR)$(etcdir) $(addprefix $(rootdir)/$(cfgdir)/,$(cfgfiles))
-	$(INSTALL) -m 0644 -t $(DESTDIR)$(man1dir) $(addprefix $(rootdir)/$(smandir)/,$(man1pages))
+	$(INSTALL) -m 0644 -t $(DESTDIR)$(man1dir) $(addprefix $(rootdir)/$(docdir)/$(smandir)/,$(man1pages))
 
 
 .PHONY: installdirs
@@ -75,6 +83,11 @@ tarball:
 	  --output $$wd/$(name)-$(fix_version).tar.gz \
 	  HEAD
 
+define subst_man
+	sed \
+		-i -e 's![@]VERSION[@]!$(version)!g' $@
+		-e '/^:Authors:/ r $(rootdir)/AUTHORS' $< > $(notdir $<)
+endef
 
 define subst_version
 	sed -e "/$(1)/s/__VERSION__/$(fix_version)/" \

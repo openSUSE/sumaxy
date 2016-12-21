@@ -10,7 +10,7 @@ SUSE, openSUSE
 
 ::
 
-  zypper install cram haveopt make xmlstarlet zsh
+  zypper install cram haveopt make xmlstarlet zsh python-docutils
   git clone https://github.com/openSUSE/sumaxy.git
   mkdir sumaxy-build
   cd sumaxy-build
