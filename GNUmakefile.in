@@ -56,7 +56,7 @@ check: $(tests) | all
 
 .PHONY: clean
 clean:
-	rm -f $(commands) $(testdir)/*.err $(manpages) $(addsuffix .rst,$(manpages))
+	rm -f $(commands) $(testdir)/*.err $(addprefix $(man1dir)/,$(man1pages)) $(addsuffix .rst,$(man1pages))
 
 
 .PHONY: install
