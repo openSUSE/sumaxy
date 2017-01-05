@@ -34,9 +34,9 @@ man1pages       = $(addsuffix .1,$(commands))
 tests           = $(testdir)
 
 .PHONY: all
-all: $(commands)
+all: $(commands) $(manpages)
 
-$(man1pages): %: $(rstdir)/%.rst
+$(manpages): %: $(rstdir)/%.rst
 	$(call subst_man)
 	$(RST2MAN) $(notdir $<) $@
 
@@ -56,14 +56,14 @@ check: $(tests) | all
 
 .PHONY: clean
 clean:
-	rm -f $(commands) $(testdir)/*.err $(addprefix $(man1dir)/,$(man1pages)) $(addsuffix .rst,$(man1pages))
+	rm -f $(commands) $(testdir)/*.err $(addprefix $(man1dir)/,$(man1pages)) $(addsuffix .rst,$(addprefix $(man1dir)/,$(man1pages)))
 
 
 .PHONY: install
 install: all installdirs
 	$(INSTALL) -m 0755 -t $(DESTDIR)$(bindir) $(commands)
 	$(INSTALL) -m 0644 -t $(DESTDIR)$(etcdir) $(addprefix $(rootdir)/$(cfgdir)/,$(cfgfiles))
-	$(INSTALL) -m 0644 -t $(DESTDIR)$(man1dir) $(addprefix $(rootdir)/$(docdir)/$(smandir)/,$(man1pages))
+	$(INSTALL) -m 0644 -t $(DESTDIR)$(man1dir) $(man1pages)
 
 
 .PHONY: installdirs
@@ -85,8 +85,9 @@ tarball:
 
 define subst_man
 	sed \
-		-i -e 's![@]VERSION[@]!$(version)!g' $@
-		-e '/^:Authors:/ r $(rootdir)/AUTHORS' $< > $(notdir $<)
+		-e '/^:Authors:/ r $(rootdir)/AUTHORS' \
+		-e 's![@]VERSION[@]!$(version)!g' \
+		$< > $(notdir $<)
 endef
 
 define subst_version
