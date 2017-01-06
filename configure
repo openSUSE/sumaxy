@@ -9,6 +9,7 @@ populate() # {{{
     -e "s@datarootdir@$datarootdirg" \
     -e "s@mandir@$mandirg" \
     -e "s@sysconfdir@$sysconfdirg" \
+    -e "s@version@$versiong" \
     $1 \
   > $2
 } # }}}
@@ -20,6 +21,7 @@ bindir='${prefix}/bin'
 datarootdir='${prefix}/share'
 mandir='${datarootdir}/man'
 sysconfdir='${prefix}/etc'
+version=`git describe --abbrev=1`
 
 for a in "$@"; do
   case $a in
@@ -31,6 +33,7 @@ for a in "$@"; do
     sysconfdir="${a#*=}"
     sysconfdir_set=1
   ;;
+   --version=*)     version="${a#*=}"     ;;
   esac
 done
 
