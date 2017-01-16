@@ -27,4 +27,7 @@ product_names+=(
   SUSE:SLES4VMWARE      sles-for-vmware
   SUSE:SUSE-MANAGER     suse-manager-server
   SUSE:Storage          ses
+  SUSE:SLE-WEBYAST      sle-11-webyast
+  SUSE:SLE-STUDIOONSITE sle-studioonsite
+  SUSE:SLE-SLMS         sle-slms
 )
