@@ -159,7 +159,7 @@ function format-output # {{{
   while read pn rn ru; do
     case $mode in
     ar) o print "zypper ar -cgkn issue-$rn $ru issue-$rn" ;;
-    rr) o print "zypper rr issue-$ru" ;;
+    rr) o print "zypper rr $ru" ;;
     * ) o print "issue-$rn $ru" ;;
     esac
     done
